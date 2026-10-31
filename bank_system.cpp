@@ -16,6 +16,7 @@ private:
   double m_balalnce{0.0};
   std::string m_fileName{"bank_data.txt"};
   std::string m_currentUserName{};
+
   bool m_isLogged{false};
 
 public:
@@ -56,6 +57,7 @@ public:
     if (amount > 0)
     {
       m_balalnce += amount;
+      write_to_file();
       std::cout << "Success! " << amount << '\n';
     }
     else
@@ -68,6 +70,7 @@ public:
     if (m_balalnce >= amount)
     {
       m_balalnce -= amount;
+      write_to_file();
       std::cout << "Success! " << amount << '\n';
       return true;
     }
@@ -77,7 +80,7 @@ public:
       return false;
     }
   }
-  void show_balance()
+  void show_balance() const
   {
     std::cout << m_balalnce << '\n';
   }
@@ -99,7 +102,7 @@ private:
       }
       else
       {
-        accounts.push_back({m_currentUserName, balance});
+        accounts.push_back({name, balance});
       }
     }
     inFile.close();
@@ -180,6 +183,8 @@ int main()
 
     default:
       std::cout << "Invalid operation\nTry again!\n";
+      std::cin.ignore(1000, '\n');
+      std::cin.get();
       break;
     }
   }
