@@ -14,7 +14,7 @@ class Bank_system
 {
 private:
   double m_balalnce{0.0};
-  std::string m_fileName{"bank_data.txt"};
+  std::string m_fileName{"Text.txt"};
   std::string m_currentUserName{};
 
   bool m_isLogged{false};
@@ -88,7 +88,7 @@ public:
 private:
   void write_to_file()
   {
-    std::ifstream inFile("bank_data.txt");
+    std::ifstream inFile(m_fileName);
     std::vector<AccountData> accounts{};
 
     std::string name{};
